@@ -1,0 +1,76 @@
+﻿<div ng-controller="DeleteEmployeeController">
+
+    <h1>Employee Data Here</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr style="font:bold">
+                <th>Employee Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Specialization</th>
+                <th>Salary</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in GetAllEmployee.employees">
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.specialization }}</td>
+                <td>{{ employee.salary }}</td>
+                <td><a ui-sref="update({id: employee.id})" class="btn btn-primary">Update</a></td>
+                <td><button class="btn btn-danger" data-toggle="modal" ng-click="deleteEmployeeId(employee.id)" data-target="#deleteModal">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header" id="tblHeader">
+                    <h4 class="modal-title">Delete Employee Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h3>Are You Sure, You want to Delete Employee {{ employeeId }}</h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="confirmedDeleteEmployeeId()">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteSuccessfulModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header" id="tblHeader">
+                    <h4 class="modal-title">Delete Employee Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h3>Employee Id: {{ employeeId }} has Been Successfully Deleted.</h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Clese</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

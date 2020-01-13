@@ -1,0 +1,70 @@
+﻿<div ng-controller="AddEmployeeController">
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header" id="tblHeader">
+                    <h4 class="modal-title">New Employee Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <form name="addEmployeeForm">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>FirstName</td>
+                                    <td>
+
+                                        <input type="text" required id="txtFirstName" ng-model="firstName" placeholder="FirstName" />
+
+                                        <span style="color:red" ng-show="addEmployeeForm.firstName.$dirty && addEmployeeForm.firstName.$invalid">
+                                            <span ng-show="addEmployeeForm.firstName.$error.required">FirstName is required.</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LastName</td>
+                                    <td>
+                                        <input type="text" required id="txtLastName" ng-model="lastName" placeholder="LastName" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td>
+                                        <input type="text" required id="txtGender" ng-model="gender" placeholder="Gender" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Specialization</td>
+                                    <td>
+                                        <input type="text" required id="txtSpecialization" ng-model="specialization" placeholder="Specialization" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Salary</td>
+                                    <td>
+                                        <input type="number" required min="0" id="txtSalary" ng-model="salary" placeholder="Salary" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="text-align: center;">
+                                        <input type="button" class="btn" ng-click="addEmployee()" id="submitBtn" value="Submit" />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
