@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace RepositoryLayer.Interface
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
 
         List<Employee> Get();

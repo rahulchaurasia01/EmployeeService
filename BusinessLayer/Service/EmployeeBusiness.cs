@@ -7,7 +7,7 @@
  */
 
 using BusinessLayer.Interface;
-using RepositoryLayer.Service;
+using RepositoryLayer.Interface;
 using CommonLayer.Model;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -17,11 +17,11 @@ namespace BusinessLayer.Service
     public class EmployeeBusiness : IEmployeeBusiness
     {
 
-        EmployeeRepository employeeRepository;
+        public IEmployeeRepository employeeRepository;
 
-        public EmployeeBusiness()
+        public EmployeeBusiness(IEmployeeRepository IEmployeeRepository)
         {
-            employeeRepository = new EmployeeRepository();
+            employeeRepository = IEmployeeRepository;
         }
 
         /// <summary>

@@ -37,7 +37,7 @@
     </div>
 
     <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog" ng-controller="AddEmployeeController">
             <div class="modal-content">
 
                 <div class="modal-header" id="tblHeader">
@@ -46,57 +46,72 @@
                 </div>
 
                 <div class="modal-body">
-                    <form name="addEmployeeForm">
+                    <div id="divError" ng-show="showError" class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                    <form name="addEmployeeForm" novalidate>
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>FirstName</td>
+                                    <td>First Name</td>
                                     <td>
-
-                                        <input type="text" required id="txtFirstName" ng-model="firstName" placeholder="FirstName" />
-
-                                        <span style="color:red" ng-show="addEmployeeForm.firstName.$dirty && addEmployeeForm.firstName.$invalid">
-                                            <span ng-show="addEmployeeForm.firstName.$error.required">FirstName is required.</span>
+                                        
+                                        <input type="text" ng-required="true" id="txtFirstName" name="firstName" ng-model="firstName" placeholder="FirstName" />
+                                           
+                                        <span style="color:red" ng-show="addEmployeeForm.firstName.$touched && addEmployeeForm.firstName.$invalid">
+                                            <span ng-show="addEmployeeForm.firstName.$error.required">First Name is required.</span>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>LastName</td>
+                                    <td>Last Name</td>
                                     <td>
-                                        <input type="text" required id="txtLastName" ng-model="lastName" placeholder="LastName" />
+                                        <input type="text" ng-required="true" id="txtLastName" name="lastName" ng-model="lastName" placeholder="LastName" />
+
+                                        <span style="color:red" ng-show="addEmployeeForm.lastName.$touched && addEmployeeForm.lastName.$invalid">
+                                            <span ng-show="addEmployeeForm.lastName.$error.required">Last Name is required.</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Gender</td>
                                     <td>
-                                        <input type="text" required id="txtGender" ng-model="gender" placeholder="Gender" />
+                                        <input type="text" ng-required="true" id="txtGender" name="gender" ng-model="gender" placeholder="Gender" />
+                                        
+                                        <span style="color:red" ng-show="addEmployeeForm.gender.$touched && addEmployeeForm.gender.$invalid">
+                                            <span ng-show="addEmployeeForm.gender.$error.required">Gender is required.</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Specialization</td>
                                     <td>
-                                        <input type="text" required id="txtSpecialization" ng-model="specialization" placeholder="Specialization" />
+                                        <input type="text" ng-required="true" id="txtSpecialization" name="specialization" ng-model="specialization" placeholder="Specialization" />
+                                        
+                                        <span style="color:red" ng-show="addEmployeeForm.specialization.$touched && addEmployeeForm.specialization.$invalid">
+                                            <span ng-show="addEmployeeForm.specialization.$error.required">Specialization is required.</span>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Salary</td>
                                     <td>
-                                        <input type="number" required min="0" id="txtSalary" ng-model="salary" placeholder="Salary" />
+                                        <input type="number" ng-required="true" min="0" id="txtSalary" name="salary" ng-model="salary" placeholder="Salary" />
+
+                                        <span style="color:red" ng-show="addEmployeeForm.salary.$touched && addEmployeeForm.salary.$invalid">
+                                            <span ng-show="addEmployeeForm.salary.$error.required">Salary is required.</span>
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr ng-controller="AddEmployeeController">
-                                    <td colspan="2" style="text-align: center;">
-                                        <button type="button" class="btn" data-dismiss="modal" ng-click="addEmployee()" id="submitBtn">Submit</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </form>
                 </div>
 
                 <div class="modal-footer">
+                    <div style="text-align: center;">
+                        <button type="button" class="btn" data-dismiss="modal" ng-disabled="addEmployeeForm.$invalid" ng-click="addEmployee()" id="submitBtn">Submit</button>
+                    </div>
                     <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
                 </div>
 

@@ -1,8 +1,14 @@
 ﻿<div ng-controller="DeleteEmployeeController">
 
-    <h1>Employee Data Here</h1>
+    <div id="divError" ng-show="showError" class="alert alert-danger">
+        {{ error }}
+    </div>
 
-    <table class="table table-bordered">
+    <h1 ng-show="showError">Employee Data Here</h1>
+
+
+
+    <table class="table table-bordered table-hover table-responsive-lg" ng-show="!showError" id="Displaytable">
         <thead>
             <tr style="font:bold">
                 <th>Employee Id</th>
@@ -16,13 +22,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="employee in GetAllEmployee.employees">
+            <tr ng-repeat="employee in employees">
                 <td>{{ employee.id }}</td>
                 <td>{{ employee.firstName }}</td>
                 <td>{{ employee.lastName }}</td>
                 <td>{{ employee.gender }}</td>
                 <td>{{ employee.specialization }}</td>
-                <td>{{ employee.salary }}</td>
+                <td>{{ employee.salary | currency:"₹":2 }}</td>
                 <td><a ui-sref="update({id: employee.id})" class="btn btn-primary">Update</a></td>
                 <td><button class="btn btn-danger" data-toggle="modal" ng-click="deleteEmployeeId(employee.id)" data-target="#deleteModal">Delete</button></td>
             </tr>
@@ -65,7 +71,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Clese</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
 
             </div>

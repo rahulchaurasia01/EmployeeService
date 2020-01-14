@@ -1,24 +1,28 @@
 ﻿<div>
     <h1>Update Employee Data Here</h1>
 
-    <form name="updateEmployeeForm">
+    <form name="updateEmployeeForm" novalidate>
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <td>FirstName</td>
+                    <td>First Name</td>
                     <td>
 
-                        <input type="text" required id="txtFirstName" ng-model="updatefirstName" placeholder="FirstName" />
+                        <input type="text" ng-required="true" id="txtFirstName" name="FirstName" ng-model="updatefirstName" placeholder="FirstName" />
 
-                        <span style="color:red" ng-show="updateEmployeeForm.updatefirstName.$dirty && updateEmployeeForm.updatefirstName.$invalid">
-                            <span ng-show="updateEmployeeForm.updatefirstName.$error.required">FirstName is required.</span>
+                        <span style="color:red" ng-show="updateEmployeeForm.FirstName.$touched && updateEmployeeForm.FirstName.$invalid">
+                            <span ng-show="updateEmployeeForm.FirstName.$error.required">First Name is required.</span>
                         </span>
                     </td>
                 </tr>
                 <tr>
-                    <td>LastName</td>
+                    <td>Last Name</td>
                     <td>
-                        <input type="text" required id="txtLastName" ng-model="updatelastName" placeholder="LastName" />
+                        <input type="text" required id="txtLastName" name="LastName" ng-model="updatelastName" placeholder="LastName" />
+
+                        <span style="color:red" ng-show="updateEmployeeForm.LastName.$touched && updateEmployeeForm.LastName.$invalid">
+                            <span ng-show="updateEmployeeForm.LastName.$error.required">Last Name is required.</span>
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -30,20 +34,28 @@
                 <tr>
                     <td>Specialization</td>
                     <td>
-                        <input type="text" required id="txtSpecialization" ng-model="updatespecialization" placeholder="Specialization" />
+                        <input type="text" required id="txtSpecialization" name="Specialization" ng-model="updatespecialization" placeholder="Specialization" />
+
+                        <span style="color:red" ng-show="updateEmployeeForm.Specialization.$touched && updateEmployeeForm.Specialization.$invalid">
+                            <span ng-show="updateEmployeeForm.Specialization.$error.required">Specialization is required.</span>
+                        </span>
                     </td>
                 </tr>
                 <tr>
                     <td>Salary</td>
                     <td>
-                        <input type="number" required min="0" id="txtSalary" ng-model="updatesalary" placeholder="Salary" />
+                        <input type="number" required min="0" id="txtSalary" name="Salary" ng-model="updatesalary" placeholder="Salary" />
+
+                        <span style="color:red" ng-show="updateEmployeeForm.Salary.$touched && updateEmployeeForm.Salary.$invalid">
+                            <span ng-show="updateEmployeeForm.Salary.$error.required">Specialization is required.</span>
+                        </span>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="2" style="text-align: center;">
-                        <button type="button" class="btn" data-toggle="modal" data-target="#updateModal" id="submitBtn">Submit</button>
+                        <button type="button" class="btn" ng-disabled="updateEmployeeForm.$invalid" data-toggle="modal" data-target="#updateModal" id="submitBtn">Submit</button>
                     </td>
                 </tr>
             </tfoot>

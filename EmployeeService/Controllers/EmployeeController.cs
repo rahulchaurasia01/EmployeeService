@@ -11,6 +11,7 @@ using System.Linq;
 using CommonLayer.Model;
 using BusinessLayer.Service;
 using Microsoft.AspNetCore.Mvc;
+using BusinessLayer.Interface;
 
 namespace EmployeeService.Controllers
 {
@@ -19,7 +20,12 @@ namespace EmployeeService.Controllers
     public class EmployeeController : ControllerBase
     {
 
-        EmployeeBusiness employeeBusiness = new EmployeeBusiness();
+        public IEmployeeBusiness employeeBusiness;
+
+        public EmployeeController(IEmployeeBusiness IEmployeeBusiness)
+        {
+            employeeBusiness = IEmployeeBusiness;
+        }
 
         /// <summary>
         /// It Return the List of Employee Data if Present

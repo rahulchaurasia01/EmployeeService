@@ -2,7 +2,7 @@
 
 var app = angular
     .module("EmployeeService", ["ui.router"])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise("/Employee");
 
@@ -11,7 +11,6 @@ var app = angular
                 url: "/Employee",
                 templateUrl: "Pages/DisplayEmployee.html",
                 controller: "GetAllEmployeeController",
-                controllerAs: "GetAllEmployee"
             })
 
             .state("update", {
@@ -19,18 +18,26 @@ var app = angular
                 templateUrl: "Pages/UpdateEmployee.html",
                 controller: "GetEmployeeController"
             })
-        $locationProvider.html5Mode(true);
     })
 
-    .controller("GetAllEmployeeController", function ($http) {
-        var vm = this;
+    .controller("GetAllEmployeeController", function ($scope, $http) {
+
+        $scope.showError = false;
+
         $http.get('http://localhost:60068/api/Employee')
             .then(function (response) {
-                vm.employees = response.data;
+                $scope.employees = response.data;
+            }, function (reason) {
+                $scope.showError = true;
+                console.log(reason.data);
+                $scope.error = reason.data;
             });
+
     })
 
     .controller("AddEmployeeController", function ($scope, $http, $state) {
+
+        $scope.showError = false;
 
         $scope.addEmployee = function () {
             var employee = {
@@ -43,8 +50,11 @@ var app = angular
             $http.post('http://localhost:60068/api/Employee', employee)
                 .then(function (response) {
                     console.log(response.data);
-                    $scope.firstName = "";
                     $state.reload();
+                }, function (reason) {
+                        $scope.showError = true;
+                        console.log(reason.data);
+                        $scope.error = reason.data;
                 });
         }
     })

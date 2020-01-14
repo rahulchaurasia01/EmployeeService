@@ -6,9 +6,9 @@ a.navbar-brand, a.nav-link {
     color: white;
 }
 
-    a.navbar-brand:focus, a.nav-link:focus, a.navbar-brand:hover, a.nav-link:hover {
-        color: #251a2a;
-    }
+a.navbar-brand:focus, a.nav-link:focus, a.navbar-brand:hover, a.nav-link:hover {
+    color: #251a2a;
+}
 
 #tblHeader {
     background-color: #d63b5a;
@@ -27,4 +27,25 @@ a.navbar-brand, a.nav-link {
 
 .modal-backdrop.show {
      opacity: 0.0; 
+}
+
+
+input.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+
+button[disabled="disabled"] {
+    opacity: 0.4;
+    cursor: not-allowed !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+    
+    #Displaytable {
+        width: 100%;
+
+    }
+
 }
